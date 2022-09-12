@@ -6,5 +6,6 @@ node_modules/
 .gitignore
 .prettierignore
 .prettierrc
+Dockerfile
 package-lock.json
 package.json
