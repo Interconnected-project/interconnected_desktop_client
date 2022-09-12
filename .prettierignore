@@ -1,0 +1,7 @@
+lib/
+node_modules/
+.gitignore
+.prettierignore
+.prettierrc
+package-lock.json
+package.json
