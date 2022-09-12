@@ -8,7 +8,8 @@
     "start:windows": "nodemon --watch 'src/**/*.ts' --exec \"npx ts-node\" src/index.ts",
     "build": "tsc -p .",
     "start:production": "node ./lib/index.js",
-    "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
+    "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}",
+    "lint": "tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx ./"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/Tale152/interconnected_desktop_client#readme",
   "devDependencies": {
     "@types/node": "^18.7.16",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
