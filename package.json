@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Tale152/interconnected_desktop_client#readme",
   "devDependencies": {
-    "@types/node": "^18.7.16",
+    "@types/node": "^18.7.17",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
