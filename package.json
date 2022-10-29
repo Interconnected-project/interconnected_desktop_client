@@ -4,8 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "start:windows": "nodemon --watch 'src/**/*.ts' --exec \"npx ts-node\" src/index.ts",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q lib/index.js\"",
     "build": "tsc -p .",
     "start:production": "node ./lib/index.js",
     "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}",
@@ -25,6 +24,7 @@
     "@types/node": "^18.7.23",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "concurrently": "^7.5.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
