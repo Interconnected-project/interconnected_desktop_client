@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:18-slim
 WORKDIR /interconnected_desktop_client
 COPY package.json .
 COPY package-lock.json .
