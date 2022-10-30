@@ -1,4 +1,7 @@
-import AnswererP2PConnection from 'interconnected_node/dist/AnswererP2PConnection';
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import MasterP2PConnection from 'interconnected_node/dist/interconnected_node/masters_hub/MasterP2PConnection';
+import { MY_ID } from './index';
 const RTCPeerConnection = require('wrtc').RTCPeerConnection;
 const RTCSessionDescription = require('wrtc').RTCSessionDescription;
 const RTCIceCandidate = require('wrtc').RTCIceCandidate;
@@ -7,7 +10,7 @@ export default async function onIncomingConnectionsHandler(
   payload: any,
   emitIceCandidateCallback: (payload: any) => void,
   disconnectionCallback: () => void
-): Promise<AnswererP2PConnection> {
+): Promise<MasterP2PConnection> {
   const peer: RTCPeerConnection = new RTCPeerConnection({
     iceServers: [
       {
@@ -36,37 +39,39 @@ export default async function onIncomingConnectionsHandler(
     }
   };
 
-  const p2pConnection = new DesktopAnswererP2PConnection(
+  const p2pConnection = new DesktopMasterP2PConnection(
     peer,
-    payload.answererId,
-    payload.initiatorId,
-    payload.initiatorRole,
+    MY_ID,
+    payload.operationId,
+    payload.masterId,
+    payload.masterRole,
     emitIceCandidateCallback
   );
 
-  return new Promise<AnswererP2PConnection>((complete) => {
+  return new Promise<MasterP2PConnection>((complete) => {
     complete(p2pConnection);
   });
 }
 
-class DesktopAnswererP2PConnection implements AnswererP2PConnection {
+class DesktopMasterP2PConnection implements MasterP2PConnection {
   private _peer: RTCPeerConnection;
-  private _myId: string;
-  private _initiatorId: string;
-  private _initiatorRole: string;
+  private _operationId: string;
+  private _masterId: string;
+  private _masterRole: string;
   private _emitIceCandidate: (payload: any) => void;
 
   constructor(
     peer: RTCPeerConnection,
-    myId: string,
-    initiatorId: string,
-    initiatorRole: string,
+    private myId: string,
+    operationId: string,
+    masterId: string,
+    masterRole: string,
     emitIceCandidate: (payload: any) => void
   ) {
     this._peer = peer;
-    this._myId = myId;
-    this._initiatorId = initiatorId;
-    this._initiatorRole = initiatorRole;
+    this._operationId = operationId;
+    this._masterId = masterId;
+    this._masterRole = masterRole;
     this._emitIceCandidate = emitIceCandidate;
 
     this._peer.ondatachannel = (event: { channel: any }) => {
@@ -86,10 +91,10 @@ class DesktopAnswererP2PConnection implements AnswererP2PConnection {
     this._peer.onicecandidate = (e: { candidate: any }) => {
       if (e.candidate) {
         const icePayload = {
-          fromId: this._myId,
-          senderRole: 'NODE',
-          toId: this._initiatorId,
-          receiverRole: this._initiatorRole,
+          fromId: this.myId,
+          fromRole: 'NODE',
+          toId: this._masterId,
+          toRole: this._masterRole,
           candidate: e.candidate,
         };
         this._emitIceCandidate(icePayload);
@@ -97,16 +102,16 @@ class DesktopAnswererP2PConnection implements AnswererP2PConnection {
     };
   }
 
-  get myId(): string {
-    return this._myId;
+  get operationId(): string {
+    return this._operationId;
   }
 
-  get initiatorId(): string {
-    return this._initiatorId;
+  get masterId(): string {
+    return this._masterId;
   }
 
-  get initiatorRole(): string {
-    return this._initiatorRole;
+  get masterRole(): string {
+    return this._masterRole;
   }
 
   get answer(): any {
