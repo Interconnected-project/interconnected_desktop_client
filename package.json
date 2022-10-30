@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/node": "^18.7.23",
     "@types/uuid": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
     "concurrently": "^7.5.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
