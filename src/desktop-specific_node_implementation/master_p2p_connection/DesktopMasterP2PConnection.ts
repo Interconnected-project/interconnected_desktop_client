@@ -59,7 +59,7 @@ export default class DesktopMasterP2PConnection implements MasterP2PConnection {
       }
     };
 
-    this.dataChannel = this.peer.createDataChannel();
+    this.dataChannel = this.peer.createDataChannel('');
     this.dataChannel.onmessage = (e: any) => {
       onMessageHandler(e.data);
     };
