@@ -7,7 +7,7 @@ const RTCIceCandidate = require('wrtc').RTCIceCandidate;
 export default class DesktopMasterP2PConnection implements MasterP2PConnection {
   private _slaveId: string;
   private _operationId: string;
-  private peer = RTCPeerConnection;
+  private peer: RTCPeerConnection;
   private dataChannel: any;
 
   constructor(
