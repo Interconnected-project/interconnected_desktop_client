@@ -1,6 +1,6 @@
 {
   "name": "interconnected_desktop_client",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "interconnected_node": "0.0.15",
+    "interconnected_node": "0.0.16",
     "uuid": "^9.0.0",
     "wrtc": "^0.4.7"
   }
