@@ -31,7 +31,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "interconnected_node": "0.0.14",
+    "interconnected_node": "0.0.15",
     "uuid": "^9.0.0",
     "wrtc": "^0.4.7"
   }
