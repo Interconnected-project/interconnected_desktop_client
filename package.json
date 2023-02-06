@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Tale152/interconnected_desktop_client#readme",
   "devDependencies": {
-    "@types/node": "^18.7.23",
+    "@types/node": "^18.11.19",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "concurrently": "^7.5.0",
